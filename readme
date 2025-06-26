@@ -1,0 +1,115 @@
+
+Demo LeyChile & BCN Data Viewer
+Este proyecto es una aplicación web en Spring Boot 3 (Java 17) que consume dos APIs:
+
+LeyChile Legacy: Obtiene categorías, agrupadores y normas en XML desde leychile.cl y las muestra en vistas Thymeleaf.
+
+BCN Legislación: Obtiene datos de una norma específica en JSON desde datos.bcn.cl y los mapea a un DTO para presentarlos en una vista.
+
+Características
+Listado de categorías (/ver-categorias)
+
+Listado de agrupadores de una categoría (/ver-agrupadores?cat={idCategoria})
+
+Listado de normas de un agrupador (/ver-normas?cat={idCategoria}&agr={idAgrupador})
+
+Detalle de norma BCN (/ver-ley?tipo={tipo}&org={org}&fechaPub={fechaPub}&numero={numero})
+
+Listado de normas legacy (/ver-normas-legacy?cat={idCategoria}&agr={idAgrupador})
+
+Detalle de norma legacy (/ver-norma-legacy?cat={idCategoria}&agr={idAgrupador}&idNorma={idNorma})
+
+Las vistas están implementadas con Thymeleaf y estilizadas con Tailwind CSS para un diseño moderno.
+
+Prerrequisitos
+Java 17 o superior
+
+Maven (wrapper incluido)
+
+Conexión a Internet (para consumir las APIs externas)
+
+Instalación
+Clonar el repositorio
+
+bash
+
+git clone https://github.com/tu-usuario/demo-leychile-bcn.git
+cd demo-leychile-bcn
+Configurar (opcional)
+
+El proyecto no requiere propiedades adicionales por defecto.
+
+Si deseas cambiar el puerto de la aplicación, edita src/main/resources/application.properties:
+
+
+server.port=8081
+Compilar y empaquetar
+
+bash
+
+./mvnw clean package
+Ejecución
+Con Maven
+bash
+
+./mvnw spring-boot:run
+Con el JAR generado
+bash
+
+java -jar target/demo-0.0.1-SNAPSHOT.jar
+Una vez iniciada, la aplicación estará disponible en http://localhost:8080.
+
+Uso
+Abre tu navegador y visita:
+
+Categorías
+http://localhost:8080/ver-categorias
+
+Agrupadores de categoría
+http://localhost:8080/ver-agrupadores?cat={idCategoria}
+
+Normas de agrupador
+http://localhost:8080/ver-normas?cat={idCategoria}&agr={idAgrupador}
+
+Detalle en JSON (BCN)
+http://localhost:8080/ver-ley?tipo={tipo}&org={org}&fechaPub={fechaPub}&numero={numero}
+
+Normas legacy (XML)
+http://localhost:8080/ver-normas-legacy?cat={idCategoria}&agr={idAgrupador}
+
+Detalle legacy
+http://localhost:8080/ver-norma-legacy?cat={idCategoria}&agr={idAgrupador}&idNorma={idNorma}
+
+Estructura del proyecto
+bash
+
+
+src/
+├── main/
+│   ├── java/com/example/demo/
+│   │   ├── client/         # Clientes RestTemplate (BCN & LeyChile)
+│   │   ├── controller/     # Controladores Thymeleaf
+│   │   └── dto/            # DTOs y wrappers para XML/JSON
+│   └── resources/
+│       ├── templates/      # Vistas Thymeleaf (.html)
+│       └── application.properties
+└── test/                   # Tests unitarios (por implementar)
+Tecnologías
+Java 17
+
+Spring Boot 3
+
+Spring Web MVC
+
+Spring RestTemplate
+
+Jackson XML & JSON
+
+Thymeleaf
+
+Tailwind CSS
+
+Licencia
+Este proyecto está bajo la licencia MIT.
+
+Para más detalles, revisa el archivo LICENSE.

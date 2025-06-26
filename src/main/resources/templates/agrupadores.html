@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agrupadores de Categoría [[${idCategoria}]]</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <!-- Navbar -->
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-indigo-600">📜 API Legislativa</a>
+      <nav>
+        <a href="/ver-categorias" class="text-indigo-500 hover:text-indigo-700">Categorías</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 py-6">
+    <div class="bg-white rounded-2xl shadow-lg p-6">
+      <h1 class="text-3xl font-semibold mb-4">
+        Agrupadores de la categoría
+        <span class="text-indigo-600" th:text="${idCategoria}"></span>
+      </h1>
+      <ul class="space-y-3">
+        <li th:each="agr : ${agrupadores}">
+          <a th:href="@{/ver-normas(cat=${idCategoria},agr=${agr.idAgrupador})}" 
+             class="block p-4 bg-indigo-50 rounded-xl hover:bg-indigo-100 transition">
+            <h2 class="text-xl font-medium text-indigo-700" th:text="${agr.descripcion}">Agrupador</h2>
+          </a>
+        </li>
+      </ul>
+
+      <div class="mt-6">
+        <a href="/ver-categorias" class="inline-block px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+          ← Volver a categorías
+        </a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

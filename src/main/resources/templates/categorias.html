@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="h-full bg-gray-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Categorías</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-full flex flex-col">
+    <!-- Navbar -->
+    <header class="bg-white shadow p-4 flex items-center justify-between">
+      <h1 class="text-xl font-bold">LeyChile / Categorías</h1>
+      <a href="/" class="text-blue-600 hover:underline">Inicio</a>
+    </header>
+
+    <!-- Content -->
+    <main class="flex-1 container mx-auto p-6">
+      <h2 class="text-2xl font-semibold mb-6">Selecciona una categoría</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          th:each="cat : ${categorias}"
+          class="bg-white rounded-2xl shadow p-6 hover:shadow-lg transition-shadow duration-200"
+        >
+          <a
+            th:href="@{/ver-agrupadores(cat=${cat.idCategoria})}"
+            class="block text-lg font-medium text-gray-800 hover:text-blue-600"
+          >
+            <span th:text="${cat.descripcion}">Categoría</span>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow p-4 text-center text-sm text-gray-500">
+      &copy; 2025 Biblioteca del Congreso Nacional
+    </footer>
+  </body>
+</html>

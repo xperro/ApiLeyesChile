@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="h-full bg-gray-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${norma.titulo}">Detalle Norma</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-full flex flex-col">
+    <!-- Navbar -->
+    <header class="bg-white shadow p-4 flex items-center">
+      <!-- Volver usando history.back(), o puedes cambiar por link a /ver-normas si prefieres -->
+      <button
+        onclick="history.back()"
+        class="text-blue-600 hover:underline mr-4 flex items-center"
+      >
+        ← Volver
+      </button>
+      <h1 class="text-xl font-semibold" th:text="${norma.titulo}">Título Norma</h1>
+    </header>
+
+    <!-- Contenido -->
+    <main class="flex-1 container mx-auto p-6">
+      <div class="bg-white rounded-2xl shadow p-8 space-y-6">
+        <!-- Datos básicos -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <dt class="text-sm font-medium text-gray-600">Materia</dt>
+            <dd class="mt-1 text-gray-800" th:text="${norma.materia}">Materia …</dd>
+          </div>
+          <div>
+            <dt class="text-sm font-medium text-gray-600">Fecha de publicación</dt>
+            <dd class="mt-1 text-gray-800" th:text="${norma.fechaPublicacion}">YYYY-MM-DD</dd>
+          </div>
+          <div>
+            <dt class="text-sm font-medium text-gray-600">Fecha de promulgación</dt>
+            <dd class="mt-1 text-gray-800" th:text="${norma.fechaPromulgacion}">YYYY-MM-DD</dd>
+          </div>
+        </div>
+
+        <!-- Tipos / Números -->
+        <div>
+          <h2 class="text-lg font-medium text-gray-700 mb-2">Tipos / Números</h2>
+          <ul class="space-y-2">
+            <li
+              th:each="tn : ${norma.tipos.lista}"
+              class="flex items-center"
+            >
+              <span class="font-semibold mr-2" th:text="${tn.descripcion}">Tipo</span>
+              <span class="text-gray-800" th:text="${tn.numero}">#</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Extracto -->
+        <div>
+          <h2 class="text-lg font-medium text-gray-700 mb-2">Extracto</h2>
+          <p class="text-gray-800" th:text="${norma.extractoTexto}">
+            …
+          </p>
+        </div>
+
+        <!-- Enlace externo -->
+        <div>
+          <a
+            th:href="${norma.url}"
+            target="_blank"
+            class="inline-block px-4 py-2 bg-blue-600 text-white rounded-xl shadow hover:bg-blue-700 transition-colors"
+          >
+            Ver en LeyChile.cl
+          </a>
+        </div>
+
+        <!-- Relaciones -->
+        <div>
+          <h2 class="text-lg font-medium text-gray-700 mb-2">Relaciones</h2>
+          <ul class="space-y-2">
+            <li th:each="r : ${norma.relas}">
+              <span class="font-semibold text-gray-600" th:text="${r.tipoRelacion}">
+                Relación
+              </span>:
+              <a
+                th:href="${r.enlace}"
+                th:text="${r.informacion}"
+                target="_blank"
+                class="text-blue-600 hover:underline ml-1"
+              >
+                Info
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow p-4 text-center text-sm text-gray-500">
+      &copy; 2025 Biblioteca del Congreso Nacional
+    </footer>
+  </body>
+</html>

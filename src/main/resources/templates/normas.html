@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="h-full bg-gray-100">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title th:text="'Normas de ' + ${agrupador.descripcion}">Normas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-full flex flex-col">
+  <!-- Navbar -->
+  <header class="bg-white shadow p-4 flex items-center">
+    <button
+      onclick="history.back()"
+      class="text-blue-600 hover:underline mr-4"
+    >
+      ← Volver
+    </button>
+    <h1 class="text-xl font-semibold" th:text="${agrupador.descripcion}">
+      Normas del agrupador
+    </h1>
+  </header>
+
+  <!-- Contenido -->
+  <main class="flex-1 container mx-auto p-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <a
+        th:each="n : ${normas}"
+        th:href="@{/ver-norma-legacy(cat=${idCategoria},agr=${agrupador.idAgrupador},idNorma=${n.idNorma})}"
+        class="block bg-white rounded-2xl shadow p-6 hover:shadow-lg transition"
+      >
+        <h2 class="text-lg font-semibold text-gray-800" th:text="${n.titulo}">
+          Título de la norma
+        </h2>
+        <p class="mt-2 text-gray-600" th:text="${n.materia}">
+          Materia …
+        </p>
+        <div class="mt-4 text-sm text-gray-500">
+          <span>Publicado:</span>
+          <span th:text="${n.fechaPublicacion}">YYYY-MM-DD</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Si no hay normas -->
+    <div
+      th:if="${#lists.isEmpty(normas)}"
+      class="text-center text-gray-500 mt-12"
+    >
+      No se encontraron normas para este agrupador.
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white shadow p-4 text-center text-sm text-gray-500">
+    &copy; 2025 Biblioteca del Congreso Nacional
+  </footer>
+</body>
+</html>
