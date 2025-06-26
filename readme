@@ -1,5 +1,6 @@
 
-Demo LeyChile & BCN Data Viewer
+Demo LeyChile & BCN Data Viewer 
+(Proyecto para entrenar un poco spring)
 Este proyecto es una aplicación web en Spring Boot 3 (Java 17) que consume dos APIs:
 
 LeyChile Legacy: Obtiene categorías, agrupadores y normas en XML desde leychile.cl y las muestra en vistas Thymeleaf.
