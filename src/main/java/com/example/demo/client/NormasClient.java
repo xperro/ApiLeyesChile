@@ -28,7 +28,6 @@ public class NormasClient {
           "https://datos.bcn.cl/recurso/cl/%s/%s/%s/%s/datos.json",
           tipoNorma, organismo, fechaPub.trim(), numero.trim()
         );
-                System.out.println(url);
 
         // Obtiene JSON bruto como String
         String rawJson = rt.getForObject(url, String.class);

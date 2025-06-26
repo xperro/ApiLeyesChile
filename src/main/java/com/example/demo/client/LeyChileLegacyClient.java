@@ -35,7 +35,6 @@ public class LeyChileLegacyClient {
             "https://www.leychile.cl/Consulta/obtxml?opt=31&agr=%d",
             idCategoria
         );
-                System.out.println(url);
 
         String xmlStr = rt.getForObject(url, String.class);
         return xml.readValue(xmlStr, AgrupadorWrapper.class);
@@ -50,7 +49,6 @@ public class LeyChileLegacyClient {
             "https://www.leychile.cl/Consulta/obtxml?opt=37&idAgrupador=%d",
             idAgrupador
         );
-                System.out.println(url);
 
         try {
             String xmlStr = rt.getForObject(url, String.class);
@@ -71,7 +69,6 @@ public class LeyChileLegacyClient {
             "https://www.leychile.cl/Consulta/obtxml?opt=36&idAgrupador=%d",
             idAgrupador
         );
-        System.out.println(url);
         String xmlStr = rt.getForObject(url, String.class);
         return xml.readValue(xmlStr, NormasWrapper.class);
     }
